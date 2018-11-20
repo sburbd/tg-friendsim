@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 332: ATL statement contains two expressions in a row; is one of them a misspelled property? If not, separate them with pass.
+    ypos 720 linear 0.2 rotate 5
+                        ^
+
+Ren'Py Version: Ren'Py 7.1.1.929
+Mon Nov 19 23:57:31 2018
