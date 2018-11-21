@@ -343,7 +343,7 @@ style navigation_button_text:
 
 screen troll_select1():
 
-        imagebutton auto "images/charselect/tagora_button_%s.png" action Jump("tagora_route") pos (320, 0)
+        imagebutton auto "images/charselect/tagora_button_%s.png" action Jump("tagora_route_test") pos (320, 0)
 
 ############################################################################################################
 ########################################### ADDED CODE FOR BILLS ###########################################
@@ -590,7 +590,7 @@ screen vol_select():
 
                 # Volume one is always available.
 
-                imagebutton auto "gui/volumefour_%s.png" action Jump("tagora_route") alt "Galora Friendsim" sensitive volume1
+                imagebutton auto "gui/volumefour_%s.png" action Jump("tagora_route_test") alt "Galora Friendsim" sensitive volume1
 
 ## Game Menu screen, modified ############################################################
 ##

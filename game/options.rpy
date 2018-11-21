@@ -36,7 +36,7 @@ define gui.about = _("")
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "friendsim"
+define build.name = "tagora_friendsim"
 
 
 ## Sounds and music ############################################################

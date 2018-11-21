@@ -3,10 +3,6 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-###########################################################################
-###########################################################################
-###########################################################################
-
 init -1 python:
 
     def tspk(what, amt=0, stmt=None, **kwargs):
@@ -140,14 +136,6 @@ define t = Character("TAGORA", color='#FFFFFF', image="tagora", window_backgroun
 ############IMAGES AND SHIT#################
 #i'd advise you keep ypos the same for the important characters!
 #also, i've left an ardata sprite in there just to help you to keep everything in proportion
-
-# image robegor neutral = Image("images/goredit/robetagora_neutral.png", ypos=730, xanchor=640, yanchor=720)
-# image robegor disgust = Image("images/goredit/robetagora_disgust.png", ypos=730, xanchor=640, yanchor=720)
-# image robegor shrug = Image("images/goredit/robetagora_shrug.png", ypos=730, xanchor=640, yanchor=720)
-# image robegor think = Image("images/goredit/robetagora_think.png", ypos=730, xanchor=640, yanchor=720)
-# image robegor smug = Image("images/goredit/robetagora_smug.png", ypos=730, xanchor=640, yanchor=720)
-# image robegor sexy = Image("images/goredit/robetagora_whydoeshelooksexytho.png", ypos=730, xanchor=640, yanchor=720)
-
 image robegor neutral = Image("images/goredit/robetagora_neutral.png", ypos=730)
 image robegor disgust = Image("images/goredit/robetagora_disgust.png", ypos=730)
 image robegor shrug = Image("images/goredit/robetagora_shrug.png", ypos=730)
@@ -156,9 +144,12 @@ image robegor smug = Image("images/goredit/robetagora_smug.png", ypos=730)
 image robegor sexy = Image("images/goredit/robetagora_whydoeshelooksexytho.png", ypos=730)
 
 image bg mc_hideout = "images/bgs/mc_hideout.png"
+image bg outglut = "images/bgs/outglut.png"
 image bg tagora_bath = "images/bgs/tagorabath.png"
 image bg tagora_int = "images/bgs/tagorainterior.png"
 image bg tagora_ext = "images/bgs/tagoraexterior.png"
+
+image ending = "images/bgs/a_happy_end.png"
 
 image money = "images/money/cashmoney.png"
 
@@ -327,10 +318,10 @@ transform speaking2:
 transform stopspeaking2:
     easein 0.3 zoom 1.0
 
-    # easein 0.35 ypos 1640
 ########################################################################
 #####zich################ ACTUAL GAME SCRIPT ###########################
 ########################################################################
+
 label start:
 
     # This is used to easily add a formatted '>' to the start of choices in menus.
@@ -360,221 +351,412 @@ label start2:
     stop music fadeout 1.5
 
 ####################################################################################
-###zich########### BANA'S ROUTE ###################################################
+###zich#################### BANA'S ROUTE TEST ######################################
 ####################################################################################
 
-label tagora_route:
+label tagora_route_test:
 
-    $ renpy.block_rollback()
+  $ renpy.block_rollback()
 
-    $ main_menu = False
+  $ main_menu = False
 
-    show image "gui/game_menu.png"
+  $ bill = 0
 
-    window hide
+  $ tdone = "\n\n*__________"
 
-    scene black with Dissolve(1.5)
+  show image "gui/game_menu.png"
 
-####################################################################################
-####zich################ TEMPORARY TEASER FOR TWITTER ##############################
-####################################################################################
+  window hide
 
-    op "Well, isn't this exciting."
+  scene black with Dissolve(1.5)
 
-    op "I've bet you've never seen this text in a friendsim before."
+  ############################################################
+  ###################### START ROUTE #########################
 
-    op "Perhaps you're wondering which Friendsim volume this will be."
+  op "What's been with everything lately?"
 
-    op "After all, you are always thirsty for..."
+  op "Has there even been a lately?"
 
-    op "{size=80}{=friend}FRIENDSHIP.{/=friend}{/size}"
+  op "You're not trying to be dramatic here, after a series of recent unsettling events making you painfully aware of it..."
 
-    op "Hang on a moment... who's this?"
+  op "...you’re honestly beginning to doubt the linearity and stability of time, along with the validity of your whole existence up to this point."
 
-    scene bg tagora_int with dissolve
+  op "What if this whole time you’ve just been stuck in a loop, reliving the same handful of days over and over again with no sign of progress past this miserable experience of reliving your successes and failures all at once?"
 
-    $ quick_menu = True
+  op "It’s like some kind of fucked up purgatory, where your agency over your free will was stripped from you just to make you dance like a puppet for hungry, ruthless Gods desperate for something they can’t have."
 
-    play music "music/tagora_theme.mp3" loop
+  op "{size=80}{=friend}FRIENDSHIP.{/=friend}{/size}"
 
-    show robegor neutral with moveinbottom
+  op "And for what? What did you do to deserve this?"
 
-    $ bill = 0
+  op "..."
 
-    $ tdone = "\n\n*__________"
+  op "Maybe you ARE being dramatic."
 
-    show screen billcount
+  op "Being dramatic sure does wipe you out."
 
-    tspk "..."
+  op "Your unquenchable thirst for budding new meaningful connections between yourself with strangers has really dried out from all this existential peril - you're run into the ground."
 
-    show robegor disgust
+  op "You are operating at zero friendmiles per hour, the gumption tank is completely empty."
 
-    show robegor disgust at shake
+  scene bg mc_hideout with dissolve
 
-    tspk "Why am I in another friendsim." (amt = 5000, stmt="Unsolicited visitation")
+  $ quick_menu = True
 
-    show robegor disgust at bounce
+  "As you continue to spiral into an endless thought hole of depression you feel your palmhusk buzz with the custom notification ding you set for each of your pals-"
 
-    tspk "This wasn't in my contract. [tdone]" (amt = 20)
+  "-it's the sound of a cash register, so immediately you know it's Tagora. You quickly unlock it to read his messages."
 
-    tspk "They better be paying me for this." (amt = 20)
+  play music "music/tagora_theme.mp3" loop
 
+  t "Is everything alright?"
 
-    show robegor disgust twitch
+  t "You called me five times last night,"
 
-    tspk "..." (amt = 20)
+  t "I tried listening to your messages but it was mostly static."
 
-    show robegor shrug at shudder
+  t "And honking."
 
-    tspk "Well, I guess if I'm here, I might as well make the most of it." (amt = 20)
+  "You’re going to hyperventilate. You don’t even remember calling Tagora and already that’s a disconcerting implication of how your day might go."
 
-    tspk "It would be uncharacteristic of me to pass up the opportunity to profit after all. [tdone]" (amt = 200, stmt="Canon characterisation")
+  menu:
 
-    show robegor neutral
+    "What will you do?" # This text is optional, I added it in as it looked strange to have the previous text in there
 
-    tspk "..." (amt = 20)
+    "[pick] Have an existential crisis":
 
-    show robegor neutral at nod
+        "You can feel the panic setting in already over this - was it really you that sent those texts, or was it another you?"
 
-    tspk "As you may have gathered, this is an excerpt of a fan friendsim." (amt = 20)
+        "Are you the real you, or are you another version of you that’s just going to become a memory to you? How real are any of you?"
 
-    tspk "One that Banavalope (@banavalope) is writing and drawing for, whilst Zich (@sburbd) is programming." (amt = 150, stmt="Namedrop fees")
+        "The room is spinning and you feel like you want to throw up, before that ridiculous cash ca-ching centers you in reality again."
 
-    show robegor neutral at twitch
+        t "Do I have to come get you?"
 
-    tspk "I can't give you any more details for now, but you should keep your eyes peeled for the release." (amt = 20)
+        t "Are you okay?"
 
-    tspk "Whilst I know very little about their respective skills, the friendsim looks promising." (amt = 20)
+        menu:
 
-    tspk "Mainly because I will be appearing in it." (amt = 500, stmt="Lawerly ego stroking")
+          "[pick] Respond":
 
-    show robegor shrug at twitch
+            "You decide to respond, Tagora is what you as a human would consider to be your best friend."
 
-    tspk "That is, if they manage to get it done sometime soon. [tdone]" (amt = 20)
+    "[pick] Respond":
 
-    hide robegor shrug with dissolve
+        "You decide to respond, Tagora is what you as a human would consider to be your best friend."
 
-    $ quick_menu = False
+  "He’s slow to admit it himself, but the social constructs on Alternia are different than Earth and you’re suspicious about whether or not the concept of platonic friendship is the same here as it is back home."
 
-    play music "music/victory_jingle.mp3" fadeout 1.0 noloop
+  "Regardless, you think he’d agree!"
 
-    op "  "
+  "You mention in a series of texts back to him that you were at a concert last night and must have butt dialed him."
 
-    scene black with Dissolve(1.5)
+  t "On a touch screen?"
 
-####################################################################################
-#####zich####################### END TEASER #####################################
-####################################################################################
+  "Listen, we all make lie-adjacent mistakes."
 
-    scene bg tagora_int with dissolve
+  t "Right."
 
-    $ quick_menu = True
+  t "Well, I have a proposition for you, regardless."
 
-    play music "music/tagora_theme.mp3" loop
+  t "Why don’t you come over in the hour?"
 
-    show robegor neutral with moveinbottom
+  t "We can talk about it at my hive."
 
-    $ bill = 0
+  stop music fadeout 0.3
 
-    $ tdone = "\n\n*__________"
+  "You see Tagora pretty often as it is so you agree and gather yourself together."
 
-    tspk "..."
+  "Maybe you just need a day where you aren’t walking a fine, indistinguishable line between making the right choices on a new face and tearing the fabric of reality into shreds."
 
-    show robegor disgust
+  "You need a day where you aren’t being prompted to smell clown stank."
 
-    show robegor disgust at shake
+  show bg outglut with wipeleft
 
-    tspk "Why am I in another friendsim." (amt = 5000, stmt="Unsolicited visitation")
+  show bg tagora_ext with wipeleft
 
-    show robegor disgust at bounce
+  "It doesn’t take long to get to Tagora’s hive, you knock on his door and can hear scritching and skittering coming from the other side before Tagora opens the door."
 
-    tspk "This wasn't in my contract. [tdone]" (amt = 20)
+  play music "music/tagora_theme.mp3" loop
 
-    tspk "They better be paying me for this." (amt = 20)
+  show robegor neutral at default with moveinbottom
 
-    hide screen billcount
+  show screen billcount
 
-####################################################################################
-####zich################## TRANSITION DEMO FOR BANA ##############################
-####################################################################################
+  tspk "Wow, you look like shit. [tdone]" (amt = -50, stmt = "Swear Jar")
 
+  "The slung insult at the expense of his own expenses slides off of you and leaves you completely unphased, it's just really nice to see a friend you already have an established rapport with."
 
+  "Besides he’s absolutely right, you DO look like shit."
 
-####################################################################################
-#####zich################## END TRANSITION DEMO #####################################
-####################################################################################
+  "But uh, oh, is this like. A bad time?"
 
-    op "What's been with everything lately?"
+  t "Why would it be a bad time, this is when I told you to come over. [tdone]"
 
-    op "Has there even been a lately?"
+  "You've just never seen this casual look before, is all."
 
-    op "You're not trying to be dramatic here, after a series of recent unsettling events making you painfully aware of it..."
+  t "That {b}is{/b} the point. [tdone]"
 
-    op "...you’re honestly beginning to doubt the linearity and stability of time, along with the validity of your whole existence up to this point."
+  show bg tagora_int with wipeleft
 
-    op "What if this whole time you’ve just been stuck in a loop, reliving the same handful of days over and over again with no sign of progress past this miserable experience of reliving your successes and failures all at once?"
+  "He invites you in, attempting to put space between you when you pass under his nostrils."
 
-    op "It’s like some kind of fucked up purgatory, where your agency over your free will was stripped from you just to make you dance like a puppet for hungry, ruthless Gods desperate for something they can’t have."
+  show robegor disgust at twitch
 
-    op "{size=80}{=friend}FRIENDSHIP.{/=friend}{/size}"
+  tspk "You {i}smell{/i} like shit. [tdone]" (amt = -50, stmt = "Swear Jar 2, Electric Boogaloo")
 
-    op "Maybe you ARE being dramatic."
+  "{size=18}Yeah, you say, briefly explaining again about the concert while making an executive decision NOT to mention the parts where you pissed/shit yourself in front of an extremely sexy clown, and were so tired after the whole ordeal you just decided to say fuck it to your dignity and slept in your filth.{size=16}"
 
-    op "Being dramatic sure does wipe you out."
+  "Some things are best left unsaid, as was once spoken by the great social climbers looking to keep their fragile constructed identities in tact."
 
-    op "Your unquenchable thirst for budding new meaningful connections between yourself with strangers has really dried out from all this existential peril - you're run into the ground."
+  "Tagora would be proud if this entire situation didn’t involve him."
 
-    op "You are operating at zero friendmiles per hour, the gumption tank is completely empty."
+  "You had a long night, that’s all there is to say on the matter."
 
-    scene bg mc_hideout with dissolve
+  show robegor disgust at shudder
 
-    $ quick_menu = True
+  t "I can’t believe you went to one of those awful things. You must not have known the typical protocol, I probably can’t blame you for being ignorant."
 
-    window hide
+  "We all make poor judgment calls when we’re at our lowest."
 
-    ##################################################################
-    #################################################################
+  show robegor neutral
 
-    play music "music/tagora_theme.mp3" loop
+  t "It’s a good thing I asked you over, then. [tdone]"
 
-    show robegor neutral with moveinbottom
+  "You start to follow Tagora through to the main room and ask why DID he invite you over?"
 
-    $ bill = 0
+  t "A self-care date."
 
-    $ tdone = "\n\n*__________"
+  t "It doesn’t take a genius to notice you’ve been stressed lately, going to a jerkoff clown event makes it more obvious you’re in need of some downtime."
 
-    show screen billcount
+  "Sounds expensive."
 
-    tspk "Why am I in another friendsim." (amt = 200, stmt="Having to see your face fee.")
+  show robegor smug at twitch
 
-    show robegor neutral at nod
+  t "Please. I’m doing you a favor, free of charge."
 
-    tspk ew "I'm not even speaking the text that Bana's given me"
+  hide screen billcount
 
-    show robegor disgust at speaking
+  t "That’s what friends are for. [tdone]"
 
-    show robegor disgust at twitch
+  "Wow, that’s… really nice of him, and sort of unexpected. You’re starting to question how you feel about spontaneity lately."
 
-    t "You'd better write my script properly before you get me back here.[tdone]"
+  show bg tagora_bath with wipedown
 
-    ####################################################################
-    ####zich################ IN PROGRESS ###############################
-    ####################################################################
+  "He leads you both into his bathroom where it looks like a bath was already drawn, it’s fizzing over and multicolored like the bath bombs you’ve seen Influencer douchebags take pictures of, trying to flex their faux luxe lifestyles."
 
-    $ renpy.pause(0.5)
+  "The water looks thick from how opaque it is."
 
-    $ quick_menu = False
+  "Is that for you? Like, are you going to get in that while Tagora’s in here, too?"
 
-    play music "music/game_over.mp3" fadeout 1.0
+  "That’s cool if he’s curious or something. You’re kind of shy, but you’ve embarrassed yourself in worse ways, especially in the last 24 hours."
 
-    scene weegee with Dissolve(1.0)
+  "Really, at this point, you’re surprised you’ve managed to somehow hold onto even an inch of modesty."
 
-    $ renpy.pause()
+  "Tagora gives you an indifferent look and shrugs."
 
-    stop music fadeout 1.0
+  show robegor shrug at bounce
 
-    scene black with Dissolve(1.0)
+  t "You have nothing I’m interested in, don’t make this weird. [tdone]"
 
-    return
+  "Fair enough."
+
+  "You at the very least tug the shower curtain forward to TRY and cover yourself as you start to undress."
+
+  show robegor think
+
+  "Tagora goes over to his shelf of endless beauty supplies, occupied by scrutinizing over the options until you’re submerged and obscured by the technicolor bubbles."
+
+  "He fills an arm full of tiny bottles and packets, turning back to you with them and setting them down carefully on the ground by you both."
+
+  "He takes a seat on the ledge of what you’ve assumed is a smaller tub attached to the bigger one, but really you have no fucking idea."
+
+  "This is nice."
+
+  show robegor think at bounce
+
+  t "So."
+
+  t "Lowest? [tdone]"
+
+  "It takes you a second to realize what he’s asking - he’s busy sorting through the bottles he’s picked out, giving you a pause to think."
+
+  menu:
+
+    "[pick] No you have to look cool in front of this joker.":
+
+      "You laugh lightly and try to pass it off with a very noncommittal ‘Yeah.’ Hoping maybe you can encourage the conversation away from a potential mental breakdown."
+
+      "Tagora stops fussing over the bottles and instead gives you a dull look that immediately conveys that he doesn’t appreciate your dodging of his question, repeating it back to you in a no-bullshit way."
+
+      t "Yeah."
+
+      t "So tell me about it. [tdone]"
+
+      "Yeah, admittedly shit’s been rough."
+
+      menu:
+
+        "[pick] Have that existential crisis now, since you so selfishly put it off before.":
+
+            "..."
+
+    "[pick] Have that existential crisis now, since you so selfishly put it off before.":
+
+        "Yeah, admittedly shit’s been rough."
+
+  "There’s the obvious fact you don’t even belong on this planet at all, and then the presumptuous effort of making friends with most every inhabitant you’ve encountered, taking it upon yourself to try and fit into a narrative you don’t belong in, it’s arduous to put it lightly."
+
+  "You thought making friends here would fill you with purpose, make you feel special and like you would be bringing something meaningful from your species to theirs."
+
+  "Maybe."
+
+  "Maybe that’s what you thought you were doing at first, but who’s to say for sure your thoughts are YOUR thoughts? Lately you doubt you have free will at all."
+
+  "Instead it feels like you’re just prolonging something dreadful."
+
+  "Honestly you're having a hard time really putting into exact words the feelings your having, here."
+
+  "A couple of times you let out an irritated sigh followed by awkward pauses as you try to catch your wording up to your thoughts before Tagora finally waves a hand at you."
+
+  show robegor smug at nod
+
+  t "It was a mistake to ask; nevermind. [tdone]"
+
+  show robegor neutral
+
+  t "You're frustrating yourself trying to explain this to me. It defeats the purpose of trying to relax if you keep tensing yourself up."
+
+  t "I’d like to avoid that. [tdone]"
+
+  "You guess that makes sense. A morose laugh huffs out of you, muttering; for a second there you thought you said the wrong thing. You still kind of expect the world to start crashing down around you any second now, though."
+
+  t "Nothing {i}bad{/i} is going to happen to you here. [tdone]"
+
+  show robegor think
+
+  "Tagora sits looking at you as his hands fidget with a small black pot, screwing and unscrewing the lid. You can notice from his expression he’s carefully considering the risk of damaging his social facade over what he’s planning to say."
+
+  t "But, when expectations get to be too much, I can understand how you can start to feel that way."
+
+  t "It’s easy to convince yourself your entire world and existence hinges on making ‘right answers’"
+
+  show robegor shrug at twitch
+
+  t "“I can’t make the bold claim to know what you’re going through, specifically. I’m not, nor have I been, in your exact situation."
+
+  show robegor think
+
+  t "Though I’ve probably experienced something of an equivalent nature to being alien in a scenario. [tdone]"
+
+  "God you wish this were a situation where you weren’t being literal, that this was all the result of a prolonged anxiety attack, then maybe Tagora’s heartfelt efforts to reassure you wouldn’t be wasted on someone so resigned."
+
+  "Though, you do allow yourself to settle into that possible reality for the sake of the moment."
+
+  t "Hmm."
+
+  "He looks like he’s trying to decide between two different bottles of indiscernible product, you’re not sure what they’re for but you could offer to be a tie breaker for whatever internal argument he’s having."
+
+  menu:
+
+    "[pick] The small black pot?":
+
+        "The small black pot? Wait, no, you meant the one with the fancy label! Why’d you say that? You bite the inside of your lip and look like you’re thinking too hard as the weight of incorrect choices makes your head start to spin again."
+
+    "[pick]  The tube with the really intricate label?":
+
+        "The small black pot? Wait, no, you meant the one with the fancy label! Why’d you say that? You bite the inside of your lip and look like you’re thinking too hard as the weight of incorrect choices makes your head start to spin again."
+
+  "So much for being relaxed."
+
+  "It must be apparent on your face because Tagora gives you a raised eyebrow, a look of concern for your mental well being."
+
+  "You guess he’s never actually seen you this unsure before, you think. Again, he cuts your stammering off and opens the small pot, dipping his fingers into the thick, light pink contents inside."
+
+  show robegor shrug at bounce
+
+  t "Unless you’re allergic to red prickle leaf extract I really don’t need your input. [tdone]"
+
+  show robegor think
+
+  "You clamp your mouth shut as Tagora sets to smearing the floral smelling paste on your face. It stings for a moment from how cold it is but warms up to your skin quickly, filling you with a soothing sensation of relief."
+
+  "Tagora crosses his legs and starts spreading a lotion from a completely different bottle on himself now that you’re well taken care of and in fucking cloud town."
+
+  "You feel safe from anything in this tranquil setting Tagora took time to carve out for the both of you. You shut your eyes and sigh as you sink deeper into the water, just enough for it to come to your chin and for bubbles to pop around your ears."
+
+  "You haven’t had a chance to feel so free of responsibility in a while. He’s really good at this."
+
+  show robegor shrug at twitch
+
+  t "I know how to take care of myself. [tdone]"
+
+  "You probably would too if you had access to a bathroom, or any kind of supplies, but you are kind of just visiting Alternia so there’s no real sense in you getting too settled in here."
+
+  "Something about that thought really stings, probably because you hadn’t entertained the naivety of it - part of you from the beginning {i}had{/i} thought this was going to be a permanent adventure, that you would be going through this friendship cycle forever and you guess just… live here?"
+
+  "What were you expecting?"
+
+  "This place fucking sucks."
+
+  "What happens at the end?"
+
+  "How do you go home?"
+
+  "..."
+
+  "You don’t have the answer to that."
+
+  show robegor sexy
+
+  t "That’s why I offered this in the first place."
+
+  "Oh shit you weren’t listening—"
+
+  show robegor think
+
+  t "I have no idea what you’re calling your hive right now, and I doubt I would like it if I did, but I can’t imagine it’s comfortable whatsoever, considering you’re not from here."
+
+  t "Having nowhere to really {i}go{/i} to escape how you’re feeling is probably rough. [tdone]"
+
+  show robegor sexy
+
+  t "So I thought"
+
+  t "I would try"
+
+  t "replicating that for you. [tdone]"
+
+  "Oh. Damn."
+
+  "Pretty bold of him to make the assumption he could make his company feel any more at home to you than anyone else. It gets a gentle laugh out of him, and you smile a little."
+
+  t "Maybe."
+
+  t "But it seems like it’s working out well. [tdone]"
+
+  "Enough that you might even cry."
+
+  show robegor disgust at shudderF
+
+  t "Please, don’t."
+
+  t "That would be really awkward for both of us. [tdone]"
+
+  hide robegor disgust with dissolve
+
+  $ quick_menu = False
+
+  $ renpy.pause(0.8)
+
+  play music "music/victory_jingle.mp3" noloop
+
+  scene ending with Dissolve(1.0)
+
+  $ renpy.pause(1.5)
+
+  scene black with Dissolve(1.5)
+
+  return
 
 return
